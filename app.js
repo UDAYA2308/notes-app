@@ -1,6 +1,6 @@
 const validator = require('validator')
 const chalk = require('chalk')
-const getNotes = require('./notes')
+const notes = require('./notes')
 const yargs = require('yargs')
 
 //customize yargs version
@@ -24,8 +24,7 @@ yargs.command({
         }
     },
     handler: function(argv) {
-        console.log('title : %s', argv.title)
-        console.log('Body : %s', argv.body)
+        notes.addNote(argv.title, argv.body)
     }
 })
 
