@@ -17,6 +17,7 @@
     },
     "homepage": "https://github.com/UDAYA2308/notes-app#readme",
     "dependencies": {
+        "chalk": "^4.0.0",
         "validator": "^13.0.0"
     }
 }
