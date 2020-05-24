@@ -1,12 +1,60 @@
 const validator = require('validator')
 const chalk = require('chalk')
 const getNotes = require('./notes')
+const yargs = require('yargs')
 
-notes = getNotes()
+//customize yargs version
+yargs.version('1.1.0')
 
-console.log(notes)
+//create add command 
+yargs.command({
+    command: 'add',
+    describe: 'Add a new note',
+    builder: {
+        title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string',
 
-console.log(validator.isEmail('uday@gmail.com'))
-console.log(validator.isURL('https://google.com'))
+        },
+        body: {
+            describe: 'Note body',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: function(argv) {
+        console.log('title : %s', argv.title)
+        console.log('Body : %s', argv.body)
+    }
+})
 
-console.log(chalk.bold.green.inverse('Success'))
+//create remove command
+yargs.command({
+    command: 'remove',
+    describe: 'Remove a note',
+    handler: function() {
+        console.log('Removing a note')
+    }
+})
+
+//create list command 
+yargs.command({
+    command: 'list',
+    describe: 'list your notes',
+    handler: function() {
+        console.log("listing out all notes")
+    }
+
+})
+
+//create read command 
+yargs.command({
+    command: 'read',
+    describe: 'read a note',
+    handler: function() {
+        console.log('Reading a note')
+    }
+})
+
+yargs.parse()
